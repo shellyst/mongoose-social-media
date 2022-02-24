@@ -1,5 +1,4 @@
 const { Schema, model } = require("mongoose");
-// Need to add date formatting.
 
 const UserSchema = new Schema(
   {
