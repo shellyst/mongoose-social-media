@@ -18,8 +18,20 @@ const UserSchema = new Schema(
         "Please fill a valid email address",
       ],
     },
-    thoughts: [],
-    friends: [this],
+    // Tells Mongoose to expect ObjectId and tell it that its data comes from the Thought model.
+    // Ref property tells the User model which documents to search to find the right thought.
+    thoughts: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Thought",
+      },
+    ],
+    friends: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
   },
   {
     toJSON: {
