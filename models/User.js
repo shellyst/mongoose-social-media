@@ -38,6 +38,7 @@ const UserSchema = new Schema(
       getters: true,
       validators: true,
     },
+    id: false,
   }
 );
 
