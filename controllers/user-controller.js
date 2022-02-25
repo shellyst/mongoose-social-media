@@ -13,7 +13,7 @@ const userController = {
         select: "-__v",
       })
       .select("-__v")
-      .stort({ _id: -1 })
+      .sort({ _id: -1 })
       .then((dbUserData) => res.json(dbUserData))
       .catch((err) => {
         console.log(err);
@@ -28,11 +28,22 @@ const userController = {
         path: "thoughts",
         select: "-__v",
       })
+      .populate({
+        path: "friends",
+        select: "-__v",
+      })
       .select("-__v")
       .then((dbUserData) => res.json(dbUserData))
       .catch((err) => {
         console.log(err);
         res.status(400);
       });
+  },
+
+  // Create a user.
+  createUser({ body }, res) {
+    User.create(body)
+      .then((dbUserData) => res.json(dbUserData))
+      .catch((err) => res.json(err));
   },
 };
