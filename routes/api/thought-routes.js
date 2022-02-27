@@ -1,22 +1,27 @@
 const router = require("express").Router();
 const {
+  getAllThought,
+  getThoughtById,
   addThought,
+  updateThought,
   removeThought,
   addReaction,
   removeReaction,
 } = require("../../controllers/thought-controller");
 
-// /api/thoughts/<userId>
-router.route("/:userId").post(addThought);
+// GET and POST via /api/thoughts
+router.route("/").get(getAllThought).post(addThought);
 
-router.route("/:userId").put(addReaction).delete(removeThought);
+// Get one, PUT, and DELETE via /api/thoughts/:id
+router
+  .route("/:id")
+  .get(getThoughtById)
+  .put(updateThought)
+  .delete(removeThought);
 
-// /api/thoughts/<userId>/<thoughtId>
-// After deleting a thought, you need to know what user the thought originated from.
-router.route("/:userId/:thoughtId").delete(removeThought);
+// Post at /api/thoughts/:thoughtId/reactions.
+router.route("/:thoughtId/reactions").post(addReaction);
 
-// "Go to this user, look at this thought, delete this reaction."
-router.route("/:userId/:thoughtId/:replyId").delete(removeReaction);
-
+router.route("/:thoughtId/reactions/:reactionId").delete(removeReaction);
 
 module.exports = router;
