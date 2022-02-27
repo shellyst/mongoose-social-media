@@ -62,9 +62,9 @@ module.exports = (
   let day;
 
   if (dateSuffix) {
-    day = addDate(dateObj.getDate());
+    day = addDate(dateObject.getDate());
   } else {
-    day = dateObj.getFullYear();
+    day = dateObject.getFullYear();
   }
 
   const year = dateObject.getFullYear();
