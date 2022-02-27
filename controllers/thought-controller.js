@@ -86,7 +86,7 @@ const thoughtController = {
       { $push: { reactions: body } },
       { new: true, reunValidators: true }
     )
-      .popular({ path: "reactions", select: "-__v" })
+      .populate({ path: "reactions", select: "-__v" })
       .select("-__v")
       .then((dbThoughtData) => {
         if (!dbThoughtData) {
@@ -123,7 +123,7 @@ const thoughtController = {
         }
         return User.findOneAndUpdate(
           { _id: params.userId },
-          { $pull: { thoughts: params.id } },
+          { $pull: { thoughts: params.Id } },
           { new: true }
         );
       })
